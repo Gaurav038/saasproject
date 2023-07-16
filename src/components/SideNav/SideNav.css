@@ -1,0 +1,21 @@
+.SideNav {
+    box-shadow: 0px 11.633987426757812px 34.90196228027344px 0px rgba(17, 38, 146, 0.05);
+    /* max-width: 356px; */
+    height: 100vh;
+    display: inline-block;
+    position: relative;
+    background-color: white;
+    /* display: none; */
+    /* width: 100px; */
+}
+
+.nav-logo {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-options {
+    padding: 26.76px;
+    /* position: absolute;
+    top: 140px; */
+}

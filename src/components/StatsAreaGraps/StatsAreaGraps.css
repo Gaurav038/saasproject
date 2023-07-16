@@ -1,0 +1,10 @@
+.StatsAreaGraps {
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+@media screen and (min-width:940px) {
+    .StatsAreaGraps {
+        gap: 24px;
+    }
+}
