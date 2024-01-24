@@ -1,6 +1,6 @@
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
-import { OrganizationSwitcher } from "@clerk/nextjs";
+import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import { Plus } from "lucide-react";
 
 export const Navbar = () => {
@@ -12,7 +12,6 @@ export const Navbar = () => {
         </div>
         <div>
           <Button
-            variant="primary"
             size="sm"
             className="rounded-sm hidden md:block h-auto  py-1.5 px-2"
           >
@@ -21,7 +20,6 @@ export const Navbar = () => {
         </div>
         <div>
           <Button
-            variant="primary"
             size="sm"
             className="rounded-sm block md:hidden"
           >
@@ -30,7 +28,32 @@ export const Navbar = () => {
         </div>
       </div>
       <div className="ml-auto flex items-center">
-          <OrganizationSwitcher />
+          <OrganizationSwitcher
+            hidePersonal
+            afterCreateOrganizationUrl="/organization/:id"
+            afterLeaveOrganizationUrl="/organization/:id"
+            afterSelectOrganizationUrl="/organization/:id"
+            appearance={{
+              elements: {
+                rootBox: {
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                },
+              },
+            }}
+          />
+          <UserButton
+            afterSignOutUrl="/"
+            appearance={{
+              elements:{
+                avatarBox:{
+                  height: 30,
+                  width: 30
+                }
+              }
+            }}
+          />
       </div>
     </nav>
   );
