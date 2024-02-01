@@ -10,6 +10,7 @@ datasource db {
   url = env("DATABASE_URL")
 }
 
-modal Board {
-  id String 
+model Board {
+  id String @id @default(uuid()) @map("_id")
+  title String
 }
