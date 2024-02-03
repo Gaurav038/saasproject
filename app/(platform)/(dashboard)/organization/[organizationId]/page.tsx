@@ -1,12 +1,15 @@
-import { OrganizationSwitcher, auth } from "@clerk/nextjs"
+import { create } from "@/actions/createBoard";
+import { Button } from "@/components/ui/button";
 
 const OrganizationIdPage = () => {
-    const {userId, orgId} = auth()
-    return (
-        <div>
-            <OrganizationSwitcher hidePersonal />
-        </div>
-    )
-}
+  return (
+    <div>
+      <form action={create}>
+        <input id="title" name="title" className="border-black border" />
+        <Button type="submit">Submit</Button>
+      </form>
+    </div>
+  );
+};
 
-export default OrganizationIdPage
+export default OrganizationIdPage;
