@@ -7,7 +7,7 @@ export async function generateMetadata() {
   const { orgSlug } = auth();
 
   return {
-    title: startCase(orgSlug || "organization test"),
+    title: startCase(orgSlug || "organization"),
   };
 };
 
