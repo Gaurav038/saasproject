@@ -23,3 +23,12 @@ model Board {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
+
+model list {
+  id   String @id @default(uuid()) @map("_id")
+  title String 
+  order Int
+
+  borderId String
+  
+}
