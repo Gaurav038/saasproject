@@ -20,31 +20,31 @@ const BoardIdPage = async ({
     redirect("/select-org");
   }
   
-  // const lists = await db.list.findMany({
-  //   where: {
-  //     boardId: params.boardId,
-  //     board: {
-  //       orgId,
-  //     },
-  //   },
-  //   include: {
-  //     cards: {
-  //       orderBy: {
-  //         order: "asc",
-  //       },
-  //     },
-  //   },
-  //   orderBy: {
-  //     order: "asc",
-  //   },
-  // });
+  const lists = await db.list.findMany({
+    where: {
+      boardId: params.boardId,
+      board: {
+        orgId,
+      },
+    },
+    include: {
+      cards: {
+        orderBy: {
+          order: "asc",
+        },
+      },
+    },
+    orderBy: {
+      order: "asc",
+    },
+  });
 
   return (
     <div className="p-4 h-full overflow-x-auto">
-      {/* <ListContainer
+       <ListContainer
         boardId={params.boardId}
         data={lists}
-      /> */}
+      />
     </div>
   );
 };
