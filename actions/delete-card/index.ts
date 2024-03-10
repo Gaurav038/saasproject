@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { createSafeAction } from "@/lib/create-safe-action";
 
-import { UpdateBoard } from "./schema";
+import { DeleteCard } from "./schema";
 import { InputType, ReturnType } from "./types";
 import { createAuditLog } from "@/lib/create-audit-log";
 import { ACTION, ENTITY_TYPE } from "@prisma/client";
@@ -20,34 +20,35 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     };
   }
 
-  const { title, id } = data;
-  let board;
+  const { id, boardId } = data;
+  let card;
 
   try {
-    board = await db.board.update({
+    card = await db.card.delete({
       where: {
         id,
-        orgId,
-      },
-      data: {
-        title,
+        list: {
+          board: {
+            orgId,
+          },
+        },
       },
     });
 
     await createAuditLog({
-      entityTitle: board.title,
-      entityId: board.id,
-      entityType: ENTITY_TYPE.BOARD,
-      action: ACTION.UPDATE,
+      entityTitle: card.title,
+      entityId: card.id,
+      entityType: ENTITY_TYPE.CARD,
+      action: ACTION.DELETE,
     })
   } catch (error) {
     return {
-      error: "Failed to update."
+      error: "Failed to delete."
     }
   }
 
-  revalidatePath(`/board/${id}`);
-  return { data: board };
+  revalidatePath(`/board/${boardId}`);
+  return { data: card };
 };
 
-export const updateBoard = createSafeAction(UpdateBoard, handler);
+export const deleteCard = createSafeAction(DeleteCard, handler);
