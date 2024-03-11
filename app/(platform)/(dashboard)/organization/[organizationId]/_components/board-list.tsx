@@ -7,9 +7,8 @@ import { db } from "@/lib/db";
 import { Hint } from "@/components/hint";
 import { Skeleton } from "@/components/ui/skeleton";
 import { FormPopover } from "@/components/form/form-popover";
-// import { FormPopover } from "@/components/form/form-popover";
-// import { MAX_FREE_BOARDS } from "@/constants/boards";
-// import { getAvailableCount } from "@/lib/org-limit";
+import { MAX_FREE_BOARDS } from "@/constants/boards";
+import { getAvailableCount } from "@/lib/org-limit";
 // import { checkSubscription } from "@/lib/subscription";
 
 export const BoardList = async () => {
@@ -27,6 +26,7 @@ export const BoardList = async () => {
       createdAt: "desc",
     },
   });
+  const availableCount = await getAvailableCount();
 
   return (
     <div className="space-y-4">
@@ -53,10 +53,13 @@ export const BoardList = async () => {
             className="aspect-video relative h-full w-full bg-muted rounded-sm flex flex-col gap-y-1 items-center justify-center hover:opacity-75 transition"
           >
             <p className="text-sm">Create new board</p>
+            <span className="text-xs">
+              {false ? "Unlimited" : `${MAX_FREE_BOARDS - availableCount} remaining`}
+            </span>
             <Hint
               sideOffset={40}
               description={`
-                Free Workspaces can have up to 5 open boards. For unlimited boards upgrade this workspace.
+                Free Workspaces can have up to 2 open boards. For unlimited boards upgrade this workspace.
               `}
             >
               <HelpCircle className="absolute bottom-2 right-2 h-[14px] w-[14px]" />
