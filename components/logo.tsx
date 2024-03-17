@@ -17,7 +17,7 @@ export const Logo = () => {
         )}
       >
         <Image alt="logo" src="/logo.svg" width={30} height={30} />
-        <p className="text-lg text-neutral-700 pb-1">Taskify</p>
+        <p className="text-lg text-neutral-700 pb-1">Task Manage</p>
       </div>
     </Link>
   );
